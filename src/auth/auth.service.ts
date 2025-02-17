@@ -127,4 +127,20 @@ export class AuthService extends PrismaClient implements OnModuleInit {
       })
     }
   }
+
+  async getUsers(ids: string[]) {
+    const users = await this.user.findMany({
+      where: {
+        id: { in: ids },
+      },
+      select: {
+        id: true,
+        username: true
+      }
+    });
+
+    return {
+      data: users
+    }
+  }
 }

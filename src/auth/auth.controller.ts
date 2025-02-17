@@ -13,6 +13,11 @@ export class AuthController {
     return this.authService.registerUser(registerUserDto);
   }
 
+  @MessagePattern('auth.get.users')
+  getUsers(@Payload('ids') ids: string[]) {
+    return this.authService.getUsers(ids);
+  }
+
   @MessagePattern('auth.login.user')
   loginUser(@Payload() loginUserDto: LoginUserDto) {
     return this.authService.loginUser(loginUserDto);
